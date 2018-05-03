@@ -67,7 +67,7 @@ class ThumbHandler
     /**
      * 构造函数
      */
-    function ThumbHandler()
+    function __construct()
     {
         $this->mask_font_color = "#ffffff";
         $this->font = 2;
