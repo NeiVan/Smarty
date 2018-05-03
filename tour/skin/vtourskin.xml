@@ -7,7 +7,7 @@
                    tooltips_hotspots="false" tooltips_mapspots="false" deeplinking="false" loadscene_flags="MERGE"
                    loadscene_blend="OPENBLEND(0.5, 0.0, 0.75, 0.05, linear)"
                    loadscene_blend_prev="SLIDEBLEND(0.5, 180, 0.75, linear)"
-                   loadscene_blend_next="SLIDEBLEND(0.5, 0, 0.75, linear)" loadingtext="载入中..." layout_width="100%"
+                   loadscene_blend_next="SLIDEBLEND(0.5, 0, 0.75, linear)" loadingtext="" layout_width="100%"
                    layout_maxwidth="100%" controlbar_width="100%" controlbar_height="0" controlbar_offset="0"
                    controlbar_offset_closed="-40" controlbar_overlap.no-fractionalscaling="10"
                    controlbar_overlap.fractionalscaling="0" design_skin_images="vtourskin.png" design_bgcolor="0x000000"
@@ -1421,7 +1421,7 @@
         </layer>
         <plugin name="loadingtext" url="%SWFPATH%/plugins/textfield.swf" keep="true" zorder="100" visible="true"
                 enabled="false" preload="true" align="center" autoheight="true" width="100" background="false"
-                html="[p]载入中...[/p]" css="p {color:#FFFFFF; font-family:arial; font-size:16px }"/>
+                html="[p][/p]" css="p {color:#FFFFFF; font-family:arial; font-size:16px }"/>
         <layer name="gallerynext" url="%SWFPATH%/skin/gallerybtns.png" align="right" x="0" y="0" zorder="100"
                crop="100|0|100|100" onovercrop="100|100|100|100" ondowncrop="100|100|100|100"
                ondown="set(y,1);dorotate();" onup="set(y,0)" direction="-1"/>
