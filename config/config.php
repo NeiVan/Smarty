@@ -20,11 +20,11 @@ error_reporting(E_ALL^E_WARNING^E_NOTICE);
 /* 数据库配置 */
 $db_type = 'mysql';   //数据库类型
 
-$db_host = '192.168.0.88';
+$db_host = '111.230.220.235';
 
 $db_user = 'root';
 
-$db_pass =  '710761';
+$db_pass =  'feipai0513';
 
 $db_port = 3306;
 
