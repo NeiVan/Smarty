@@ -42,31 +42,14 @@
 
 }
 </style>
-<footer class="footer ab">
- <div class="footer-warper">
-  <div class="footer-logo"><a href="#"><img src="/static/images/logo.png"></a></div>
-  <ul class="footer-nav">
-   <li>
-   	{foreach $nav_links.left_bottom as $v}
-		<a target="_blank" href="/article?aid={$v.id}" title="{$v.title}">{$v.title}</a>
-	{/foreach}
-   </li>
-  </ul>
-  <div class="cooperative" style="float:right">
-   <p class="qq"><a target="blank" href="http://wpa.qq.com/msgrd?V=3&uin={$_lang.qq}&Site={$_lang.title}&Menu=yes"><img src="/static/images/qq_online.png" style="cursor:pointer;"></a></p>
-   <div class="clearfix" style="height:5px"></div>
-   <p class="hz">合作电话：{$_lang.tel} </p><p class="bq">Copyright&copy;2018 {$_lang.title} All Rights Reserved   <a style="color: #bfbfbf;text-decoration: underline;" href="#" target="_blank">{$_lang.icp}</a></p>
-   </div>
-  </div>
-</footer>
 <script language="JavaScript" type="text/javascript" src="/static/js/jquery.form.js"></script>
-<script language="JavaScript" type="text/javascript" src="/static/js/bootbox.js"></script> 
-<script language="JavaScript" type="text/javascript" src="/static/js/pager.js"></script> 
+<script language="JavaScript" type="text/javascript" src="/static/js/bootbox.js"></script>
+<script language="JavaScript" type="text/javascript" src="/static/js/pager.js"></script>
 <script language="JavaScript" type="text/javascript" src="/static/js/common.js"></script>
 <script language="JavaScript" type="text/javascript" src="/static/js/zui.js"></script>
 <script>
 	var f_resize_time;
-	window.onload = function (){ 
+	window.onload = function (){
 		f_resize_time = setTimeout(resizeFooter,1000);
 		// $(window).bind("resize",function(){
 		// 	$("footer").hide();
@@ -78,7 +61,7 @@
 			if(f_resize_time) clearTimeout(f_resize_time);
 			f_resize_time = setTimeout(resizeFooter,100);
 		})
-	} 
+	}
 	function resizeFooter(){
 		if ($(window).height()>$(document.body).height()) {
 			$("footer").addClass("ab").show();

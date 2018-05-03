@@ -30,6 +30,7 @@ $_lang = array(
 'global_sms_type' => array(
                 'yuntongxun'=>'云通讯',
 				'alidayu'=>'阿里大鱼',
+                'mob'=>'Mob',
                 ),	
 'global_wx_type' => array(
                 'wx'=>'微信公众号',

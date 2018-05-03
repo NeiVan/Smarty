@@ -50,8 +50,15 @@ else{
 	  //阿里大鱼发送短信
 	  if($_lang['global_sms']=='alidayu'){
 		  require './source/alidayu/TopSdk.php';
-		  sendSMS($_lang['alidayu_config']['appkey'],$_lang['alidayu_config']['secretkey'],$_lang['alidayu_config']['freesignname'],$_lang['alidayu_config']['templatecode'],$phone,$sms_captcha); 
+		  sendSMS($_lang['alidayu_config']['appkey'],$_lang['alidayu_config']['secretkey'],$_lang['alidayu_config']['freesignname'],$_lang['alidayu_config']['templatecode'],$phone,$sms_captcha);
 	  }
+       //Mob发送短信
+       if($_lang['global_sms']=='mob'){
+           require './source/mob/TopSdk.php';
+           //请求接口验证短信
+          $res = Sms_mob("https://webapi.sms.mob.com/sms/verify","2399ba11f61aa",$phone,"86",$captcha);
+          var_dump($res);
+       }
 	  $_SESSION['sms'][$act]['send_time'] = Common::gmtime();
 	  $_SESSION['sms'][$act]['phone'] = $phone;
 	  $_SESSION['sms'][$act]['captcha'] = Common::encrypt($sms_captcha);

@@ -72,7 +72,7 @@ class Common{
  */
  public static function encrypt($char)
  {
-    return md5(md5($char)); 
+    return md5(md5($char));
  }
 
 
@@ -180,13 +180,28 @@ class Common{
  */
  public static function is_mobile($mobile)
  {
-   if(preg_match("/^13[0-9]{9}$|^15[0-9]{9}$|^18[0-9]{9}$|^17[0-9]{9}$|^147[0-9]{8}$/",$mobile)) 
+   //if(preg_match("/^13[0-9]{9}$|^15[0-9]{9}$|^18[0-9]{9}$|^17[0-9]{9}$|^147[0-9]{8}$/",$mobile))
+   if(preg_match("/^1[3|4|5|7|8|9][0-9]{9}$/",$mobile))
    {
       return true;
    }
    return false;
  }
- 
+ /*
+  * 判断飞行器是否为32位
+  * @param String flyserialnumber
+  * @return bool
+  */
+public static function is_sixnumber($flyserialnumber)
+{
+    if(strlen($flyserialnumber)==32)
+    {
+        return true;
+    }else{
+        return false;
+    }
+}
+
  /**
   * 验证qq号是否正确 
   * @5-10位数字
@@ -386,6 +401,7 @@ public static function hide_middle($str,$start=1,$end=1,$middle){
    }
    return mb_substr($str,0,$start,'utf8').substr($replace,0,$middle).mb_substr($str,-$end,$end,'utf8');
 }
+
 
  /**
   * 格式化时间为：X秒前(后)，X分钟前(后)，X小时前(后)，X天前(后)

@@ -9,7 +9,12 @@ $module = isset($_REQUEST['module']) ? Common::sfilter($_REQUEST['module']) : 'i
 if(file_exists($module_file= 'template/'.$_lang['moban'].'/module/'.$module.'.php')){ 
    require $module_file;
    $tp->assign('module',$module);
-   $tp->display($_lang['moban'].'/index.tpl');
+   if($module=='searchphone'){
+       $tp->display($_lang['moban'].'/index1.tpl');
+   }else{
+       $tp->display($_lang['moban'].'/index.tpl');
+   }
+
 }
 else{
    die('禁止访问！');

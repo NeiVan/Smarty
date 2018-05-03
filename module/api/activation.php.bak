@@ -1,0 +1,123 @@
+<?php
+header("Content-type: application/json; charset=utf-8");
+if(!defined('IN_T')){
+    die('禁止访问！');
+}
+//接收的参数
+$access_token =  Common::sfilter($_REQUEST['access_token']);
+if($access_token=='feipai6') {
+    $preparam = array(
+        'flyserialnumber' => empty($_REQUEST['flyserialnumber']) ? "" : Common::sfilter($_REQUEST['flyserialnumber']),
+        'status' => empty($_REQUEST['status']) ? "" : Common::sfilter($_REQUEST['status']),
+    );
+    $list = get_serial_number($preparam['flyserialnumber']);
+    //判断序列号是否是存在或者是32位
+    if($list['status']!=1){
+        $res['errcode'] = 40001;
+        $res['errmsg'] = '序列号无效或不匹配';
+    }else{
+        //判断状态码是否已经激活
+        if($list['list'][0]['status']=='1'){
+            $res['errcode'] = 40002;
+            $res['errmsg'] = '序列号已激活';
+        }else{
+            $change = activation_serial_number($list['list'][0]['fly_serial_number'],$preparam['status']);
+            $res['errcode'] = 0;
+            $res['errmsg'] = '激活成功!';
+        }
+
+    }
+
+    echo urldecode(json_encode(urlencodeFun($res)));
+    exit;
+}else{
+    $res=array(
+        'errcode' =>40006,
+        'errmsg' => 'invalid access_token!',
+    );
+    echo urldecode(json_encode(urlencodeFun($res)));
+    exit;
+}
+
+/**
+ * 改变飞机序列号状态
+ */
+function activation_serial_number($serialnumber,$status){
+    $list_sql = "UPDATE ".$GLOBALS['Base']->table('flynumber_manager');
+    $sql = " SET status=".$status." WHERE fly_serial_number='".$serialnumber."'";
+    $list = $GLOBALS['Db']->query($list_sql.$sql);
+    return $list;
+}
+
+/**
+ *  获得飞机序列号
+ */
+function get_serial_number($serialnumber){
+    $list_sql = "SELECT status,fly_serial_number ";
+    $sql = "FROM ".$GLOBALS['Base']->table('flynumber_manager')." WHERE 1 ";
+    if (mb_strlen($serialnumber)<0||mb_strlen($serialnumber)>32) {
+        $res['status'] = 0;
+        $res['list'] =array();
+    }else{
+        //搜索項目名稱
+        $sql .= "AND fly_serial_number='$serialnumber' ";
+
+        //echo $sql;
+        $list = $GLOBALS['Db']->query($list_sql.$sql);
+        if(is_array($list)&&empty($list)){
+            $res = array(
+                'status' => 0,
+                'list'=> array()
+            );
+        }else{
+            $res = array(
+                'status' => 1,
+                'list'=>$list
+            );
+        }
+
+    }
+    return $res;
+}
+
+
+/**
+ * 中文乱码
+ */
+function urlencodeFun(array $params = array()){
+    foreach ( $params as $key => $value ) {
+        $params[$key] = urlencode ( $value );
+    }
+    return $params;
+}
+
+/**
+ * 发起一个post请求到指定接口
+ *
+ * @param string $api 请求的接口
+ * @param array $params post参数
+ * @param int $timeout 超时时间
+ * @return string 请求结果
+ */
+function postRequest( $api, array $params = array(), $timeout = 30 ) {
+    $ch = curl_init();
+    curl_setopt( $ch, CURLOPT_URL, $api );
+    // 以返回的形式接收信息
+    curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+    // 设置为POST方式
+    curl_setopt( $ch, CURLOPT_POST, 1 );
+    curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query( $params ) );
+    // 不验证https证书
+    curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, 0 );
+    curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 0 );
+    curl_setopt( $ch, CURLOPT_TIMEOUT, $timeout );
+    curl_setopt( $ch, CURLOPT_HTTPHEADER, array(
+        'Content-Type: application/x-www-form-urlencoded;charset=UTF-8',
+        'Accept: application/json',
+    ) );
+    // 发送数据
+    $response = curl_exec( $ch );
+    // 不要忘记释放资源
+    curl_close( $ch );
+    return $response;
+}
