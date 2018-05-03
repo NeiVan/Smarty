@@ -10,6 +10,9 @@
 <include url="%SWFPATH%/skin/vtourskin.xml" />
 <include url="%SWFPATH%/autorotate.xml" />
 <include url="%SWFPATH%/object.xml" />
+<include url="%SWFPATH%/loadinganimation.xml" />
+<include url="%SWFPATH%/loadingpercenttext.xml" />
+<include url="%SWFPATH%/loadingbar.xml" />
 <contextmenu fullscreen="false" versioninfo="false">
         <item name="logo" caption="{$_lang.title}" separator="true" onclick="openurl('{$_lang.host}')" devices="flash|webgl"/>
 </contextmenu>
