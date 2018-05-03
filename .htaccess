@@ -10,10 +10,10 @@ RewriteBase /
   Options -Indexes	 
 </Files>
 
-RewriteCond %{http_host} ^krpano100.com$ [nc]   
-RewriteRule ^(.*)$ http://www.krpano100.com/$1 [r=301,nc]
+RewriteCond %{http_host} ^feipai2.com$ [nc]
+RewriteRule ^(.*)$ http://111.230.220.235/$1 [r=301,nc]
 
-RewriteRule ^passport/$                                  /passport\.php        		[QSA,L]
+RewriteRule ^passport$                                  /passport\.php        		[QSA,L]
 RewriteRule ^passport/([a-zA-Z0-9_]+)$                   /passport.\php?module=$1   [QSA,L] 
 RewriteRule ^passport/([a-zA-Z0-9_]+)?redirectUrl=(.*)$               /passport.\php?module=$1&redirectUrl=$2     [QSA,L]
 
@@ -30,5 +30,15 @@ RewriteRule ^add/([a-zA-Z0-9_]+)$                   /add.\php?module=$1   [QSA,L
 
 RewriteRule ^index\.html$                            /index.\php        [QSA,L]
 RewriteRule ^([a-zA-Z0-9_]+)$                   /index.\php?module=$1   [QSA,L] 
-RewriteRule ^people/([0-9]+)$                   /index.\php?module=people&uid=$1   [QSA,L] 
+RewriteRule ^people/([0-9]+)$                   /index.\php?module=people&uid=$1   [QSA,L]
 
+
+RewriteRule ^api/([a-zA-Z0-9_]+)$                     /api.\php?module=$1                  [QSA,L]
+RewriteRule ^api/([a-zA-Z0-9_]+)?access_token=(.*)$                                  /api.\php?module=$1&access_token=$2              [QSA,L]
+
+
+RewriteRule ^searchphone/$                                  /flyserialnumber\.php        		[QSA,L]
+RewriteRule ^searchphone/([a-zA-Z0-9_]+)$                   /flyserialnumber.\php?module=$1   [QSA,L]
+
+
+ErrorDocument 404 /404.html
