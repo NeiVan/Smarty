@@ -27,6 +27,7 @@
 .ab{
 	position: absolute;
 	bottom: 0;
+	left:0;
 }
 @media (max-width:470px) {
 .footer{ position: relative;height: 94px;}
