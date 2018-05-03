@@ -13,7 +13,7 @@ if(file_exists($module_file= 'module/add/'.$module.'.php')){
    require $module_file;
    $tp->assign('module',$module);
    $tp->assign('limit_num',Transaction::get_user_projects_limit($user['pk_user_main']));
-//   $tp->display('add/add.tpl');
+   $tp->display('add/add.tpl');
 }
 else{
    die('禁止访问！');

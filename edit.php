@@ -12,7 +12,7 @@ $module = isset($_REQUEST['module']) ? Common::sfilter($_REQUEST['module']) : 'p
 if(file_exists($module_file= 'module/edit/'.$module.'.php')){ 
    require $module_file;
    $tp->assign('module',$module);
-//   $tp->display('edit/edit.tpl');
+   $tp->display('edit/edit.tpl');
 }
 else{
    die('禁止访问！');

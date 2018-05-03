@@ -21,7 +21,7 @@ else{
 	}
 	$Db->update($Base->table('object_around'),array('view_num'=>$obj['view_num']+1),array('id'=>$oid));
 	$tp->assign("obj",$obj);
-//	$tp->display($_lang['moban']."/obj.tpl");
+	$tp->display($_lang['moban']."/obj.tpl");
 }
 
 ?>
