@@ -49,7 +49,7 @@ $Base = new Base($db_name,$db_prefix);
 /* 将session登录信息映射到$user */
 $user = array(
  'pk_user_main' => isset($_SESSION['user']['pk_user_main']) ? $_SESSION['user']['pk_user_main']: 0,
- 'phone' => isset($_SESSION['user']['phone']) ? Common::hide_middle($_SESSION['user']['phone'],3,4): '',
+ 'phone' => isset($_SESSION['user']['phone']) ? Common::hide_middle($_SESSION['user']['phone'],3,4,4): '',
  'nickname' => isset($_SESSION['user']['nickname']) ? $_SESSION['user']['nickname']: '',
  'avatar' => isset($_SESSION['user']['avatar']) ? $_SESSION['user']['avatar']: '',
  'level' => isset($_SESSION['user']['level']) ? $_SESSION['user']['level']: '',
