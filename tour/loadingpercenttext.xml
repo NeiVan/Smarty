@@ -30,7 +30,6 @@
         asyncloop(loadingpercent_isloading,
         mul(pv, progress.progress, 100);
         roundval(pv,0);
-        txtadd(layer[loadingpercent_text].html, '<Loa></Loa>ding', get(pv), '%');
         );
     </action>
 

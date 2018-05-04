@@ -11,7 +11,7 @@
              keep="true"
              visible="false"
              flying="1.0"
-             url="http://www1.feipai6.com/tour/loadinganimation.png"
+             url="loadinganimation.png"
              crop="0|0|64|64"
              frame="0" frames="8"
     />
